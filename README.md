@@ -84,11 +84,10 @@ Visualización 2D del clustering (`data/clustering_pca.png`):
 
 ## 4. Respuestas a las preguntas de control
 
-> ⚠️ **Pendiente:** el enunciado del examen menciona 3 preguntas de
-> control "incluidas al final del enunciado", pero no aparecen en el
-> documento. Confirmar con el docente y completar esta sección antes
-> de la entrega.
+*Las 3 preguntas de control serán proporcionadas por el docente al
+final del examen. Esta sección se completará con las respuestas en
+cuanto sean entregadas.*
 
-1. *(pendiente)*
-2. *(pendiente)*
-3. *(pendiente)*
+1. 
+2. 
+3.
