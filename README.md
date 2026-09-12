@@ -82,12 +82,40 @@ Visualización 2D del clustering (`data/clustering_pca.png`):
 > Si vuelves a ejecutarlo pueden variar levemente según la semilla
 > aleatoria del dataset generado.*
 
-## 4. Respuestas a las preguntas de control
+## 3.1. Interpretación de los resultados
 
-*Las 3 preguntas de control serán proporcionadas por el docente al
-final del examen. Esta sección se completará con las respuestas en
-cuanto sean entregadas.*
+**Sobre el preprocesamiento:**
+El `StandardScaler` se ajustó (`fit`) únicamente sobre el conjunto de
+entrenamiento y luego se usó para transformar tanto train como test.
+Esto evita el *data leakage*: si se ajustara sobre todo el dataset,
+el modelo tendría acceso indirecto a información estadística del
+conjunto de prueba antes de ser evaluado, lo que infla artificialmente
+las métricas y no refleja el rendimiento real ante datos nuevos.
 
-1. 
-2. 
-3.
+**Sobre el clasificador (Regresión Logística):**
+- **Accuracy (0.9700):** el modelo clasificó correctamente el 97% de
+  las muestras del conjunto de prueba.
+- **F1-score (0.9691):** balance entre precisión y recall; al ser
+  cercano al accuracy, indica que el modelo no está sesgado hacia
+  una sola clase.
+- **Matriz de Confusión:** de 50 muestras reales de la clase 0, el
+  modelo acertó las 50; de 50 muestras reales de la clase 1, acertó
+  47 y confundió 3 con la clase 0. Esto muestra un desempeño muy
+  sólido con un ligero margen de error solo en la clase 1.
+
+**Sobre el pipeline no supervisado (PCA + K-Means):**
+- **Varianza explicada acumulada (0.8903):** las 2 componentes
+  principales retienen el 89% de la información original de las 4
+  características, por lo que la reducción de dimensionalidad no
+  pierde demasiada información relevante.
+- **Coeficiente de Silueta (0.3457):** valor positivo y moderado,
+  indica que los 3 clusters encontrados por K-Means tienen una
+  separación razonable entre sí, aunque con cierto solapamiento
+  visible en el borde entre grupos (como se aprecia en el gráfico,
+  donde el cluster verde y el amarillo/morado se tocan en el centro).
+
+**Por qué PCA antes de K-Means:**
+Reducir a 2 dimensiones permite visualizar los clusters gráficamente
+y también reduce el ruido de características poco informativas,
+ayudando a que el algoritmo de K-Means agrupe sobre las direcciones
+de mayor varianza de los datos.
